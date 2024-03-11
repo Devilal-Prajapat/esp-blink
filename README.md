@@ -14,3 +14,15 @@ for vscode plugin:
 for adding Arduino ide support add this in Preference/setting/additional board manager 
 	https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 ```
+## add esp-aws-iot sdk 
+```
+## goto  your project dir
+Please clone this branch of the repository using:
+	git clone -b "<name_of_the_release_branch>" --recursive https://github.com/espressif/esp-aws-iot
+	
+For example: To clone just release/release/v3.1.x, you may run:
+	git clone -b "release/v3.1.x" --recursive https://github.com/espressif/esp-aws-iot
+
+To add esp-aws-iot sdk to project, update CMakeList.txt 
+	set(EXTRA_COMPONENT_DIRS "esp-aws-iot")
+```

@@ -15,7 +15,7 @@
 #include "esp_log.h"
 #include "mqtt_client.h"
 #include "sdkconfig.h"
-
+#include "aws_iot.h"
 #include "time_util.h"
 static const char *TAG = "example";
 
@@ -183,8 +183,6 @@ void mqtt_app_start(void)
 	}
 }
 
-
-
 void vLedTask()
 {
 	configure_led();
@@ -212,7 +210,8 @@ void vEventTaskFunction()
 			s_retry_num = 0;
 			sntp_config();
 			sync_time(0);
-			mqtt_app_start();
+			//mqtt_app_start();
+			aws_iot_start();
 		}
 	}
 }

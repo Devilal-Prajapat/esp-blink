@@ -29,8 +29,14 @@ void sync_time(void *param)
 
 	int retry = 0;
 	const int retry_count = 15;
-	while(esp_sntp_get_sync_status()==SNTP_SYNC_STATUS_RESET && ++retry < retry_count)
+	time_t now = 0;
+	struct tm time_info = {0};
+	time(&now);
+	localtime_r(&now,&time_info);
+	while((esp_sntp_get_sync_status()==SNTP_SYNC_STATUS_RESET && ++retry < retry_count) && time_info.tm_year < 2000 )
 	{
+		time(&now);
+		localtime_r(&now,&time_info);
 		ESP_LOGI(TAG,"sntp sync... %d",retry);
 		vTaskDelay(100);
 	}
